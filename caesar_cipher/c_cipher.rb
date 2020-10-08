@@ -1,6 +1,6 @@
 =begin
 c_cipher.rb
-caesar_cipher takes a string and a facter and ouputs a ciphered message using the caesar method.
+caesar_cipher takes a string and a factor and ouputs a ciphered message using the caesar method.
 =end
 
 def caesar_cipher (message, factor)
