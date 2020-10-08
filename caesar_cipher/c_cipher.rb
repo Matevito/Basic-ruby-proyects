@@ -18,20 +18,19 @@ def cipher_letter (letter, factor)
     return letter unless alphabet.include?(letter.downcase) 
 
     #find current letter index
-    letter_index = alphabet.find_index(letter.downcase) + factor
-    while letter_index > 25 
-        letter_index -= 26
+    ciphered_index = alphabet.find_index(letter.downcase) + factor
+    while ciphered_index > 25 
+        ciphered_index -= 26
     end
 
     #modify letter acording lower/upper case
     if letter == letter.downcase
-        alphabet[letter_index].downcase
+        alphabet[ciphered_index].downcase
     else
-        alphabet[letter_index].upcase
+        alphabet[ciphered_index].upcase
     end
 
 end
 
 #example
-
-puts caesar_cipher("What a string!", 5)
+puts caesar_cipher("What a string!", 5) # output=>ciphered_index
