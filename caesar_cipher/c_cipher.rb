@@ -33,4 +33,4 @@ def cipher_letter (letter, factor)
 end
 
 #example
-puts caesar_cipher("What a string!", 5) # output=>ciphered_index
+puts caesar_cipher("What a string!", 5) # output=> "Bmfy f xywnsl!"
