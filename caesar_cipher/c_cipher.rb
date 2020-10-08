@@ -34,4 +34,4 @@ end
 
 #example
 
-puts caesar_cipher("ABCDefghijklmnopqrstuvwxyz !", 3)
+puts caesar_cipher("What a string!", 5)
