@@ -20,11 +20,12 @@ def bubble_sort (num_list)
 
             end
         end
+
         #actualize list 
         num_list = new_list
         break if is_sorted == true 
     end
-    num_list
+    return num_list
 end
 
-print bubble_sort([4,3,78,2,0,2]) #output=> [0, 2, 2, 3, 4, 78
+print bubble_sort([4,3,78,2,0,2]) #output=> [0, 2, 2, 3, 4, 78]
