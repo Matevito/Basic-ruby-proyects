@@ -1,29 +1,25 @@
 def stock_picker(stock_values)
     #todo: think in a better name for this variable
     profitable_days = []
-    while true
+    for buy in (0..stock_values.length-2)
         profit_per_day = []
-        #when stock_values length = 1, theres nothing more else to do 
-        break if stock_values.length == 1
-
-        for i in (1..stock_values.length-1)
-            buy_day = stock_values.first
-            sell_day = stock_values[i]
+        for sell in (buy+1..stock_values.length-1)
+            buy_day = stock_values[buy]
+            sell_day = stock_values[sell]
             profit = sell_day-buy_day
-            
-            #todo: think in a better name for this variable
-            day_data = [profit,buy_day,sell_day]
+            buy_index = buy
+            sell_index = sell
+            day_data = [profit,buy_day,sell_day, buy_index, sell_index]
             profit_per_day.push(day_data)
         end
-        #stock_values.shift
+        
         profit_per_day = profit_per_day.sort_by {|option| option[0]}
-
         #send the best day to profit per day and remove the first element in stock values
         profitable_days.push(profit_per_day.last)
-        stock_values.shift
     end
     profitable_days = profitable_days.sort_by {|day| day[0]}
-    most_profitable_day = profitable_days.last
+    #this returns just the values of the buy and sell index days
+    profitable_days.last.last(2)
 end
 
 
