@@ -53,9 +53,12 @@ class Game_ttt
             when (@@board["7"] == @@board["5"] && @@board["5"] == @@board["3"]) &&@@board["7"] != " "
                 return true  
         end
-        # check if it's a draw //turn 9 and there's no winner
-        return "draw" if @@turn == 9
+        # check if it's a draw //turn 10 and there's no winner
+        return "draw" if @@turn == 10
         return false
+    end
+    def self.get_turn
+        @@turn
     end
     #
 end

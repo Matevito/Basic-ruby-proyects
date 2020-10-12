@@ -23,7 +23,6 @@ while gonna_play == "y"
     until game_done
         # make move
         player_1.make_move
-        Game_ttt.print_gui
 
         # check board state
         game_done = Game_ttt.check_game_state
@@ -33,13 +32,21 @@ while gonna_play == "y"
 
         # now with player 2
         player_2.make_move
-        Game_ttt.print_gui
         game_done = Game_ttt.check_game_state
     end
 
-    p "game_finished"
+    # final message // is good to this being a method of Game_ttt?
+    current_turn = Game_ttt.get_turn
+    if current_turn%2 == 0 && current_turn<10
+        p "#{name_1} wins!"
+    elsif current_turn%2 != 0
+        p "#{name_2} wins!"
+    else
+        p "it's a draw!" 
+    end
 
     # fence-post bugg solve
     puts "gonna play a game of tic-tac-toe?(y/n)"
     gonna_play = gets.chomp
+    Game_ttt.reset_bg
 end

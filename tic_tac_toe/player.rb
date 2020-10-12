@@ -11,7 +11,14 @@ class Player < Game_ttt
         puts "player #{name}, make your move: "
         move = gets.chomp
         # todo: what if the choosen move has been already selected?
+        until @@board[move] == " "
+            puts "the cell has already been taken. Choose another cell"
+            puts "player #{name}, make your move: "
+            move = gets.chomp
+        end
+        # perform the move in the board
         @@board[move] = board_sign
+        Game_ttt.print_gui
         @@turn += 1
     end
 end
