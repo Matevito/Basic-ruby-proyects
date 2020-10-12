@@ -55,6 +55,7 @@ class Game_ttt
         end
         # check if it's a draw //turn 9 and there's no winner
         return "draw" if @@turn == 9
+        return false
     end
     #
 end

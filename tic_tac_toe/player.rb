@@ -7,7 +7,11 @@ class Player < Game_ttt
         @name = name
         @board_sign = board_sign
     end
-    def make_move(move)
+    def make_move
+        puts "player #{name}, make your move: "
+        move = gets.chomp
+        # todo: what if the choosen move has been already selected?
         @@board[move] = board_sign
+        @@turn += 1
     end
 end
