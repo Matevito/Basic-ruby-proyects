@@ -12,6 +12,14 @@ module GameMethods
         puts"Position and number correct: #{results[0]}"
         puts"Just number correct: #{results[1]}"
     end
+    #this solve a bugg that affect the variable that holds the s_code of the round
+    def make_copy (code)
+        copy = []
+        code.each do |number|
+            copy.push(number)
+        end        
+        return copy
+    end
 end
 
 class Mastermind
@@ -19,7 +27,6 @@ class Mastermind
     @@game_guesses = []  #this can be saved in the cpu                                                  
     def check_guess(guess_, secret_code)
         # output:an array [color_position, color]
-        @@game_guesses.push(guess_)
         # check color-position
         position = 0
         color =  0

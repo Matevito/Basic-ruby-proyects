@@ -23,10 +23,9 @@ loop do
     for i in (1..12)
         puts "\nguesses left: #{turn}"
         p secret_code
-        code_to_check = secret_code
+        code_to_check = current_game.make_copy(secret_code)
         guess = player_1.take_a_guess
         guess_results = current_game.check_guess(guess, code_to_check)
-        p guess_results
 
         current_game.print_game_evaluation(guess_results)
         break if guess_results[0] == 4
