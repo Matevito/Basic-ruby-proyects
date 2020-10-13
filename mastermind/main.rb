@@ -43,7 +43,34 @@ loop do
         end
     elsif intro_input == "2"
     # vs cpu easy mode
-        
+        #puts "Player, put your name: "
+        #name = gets.chomp
+        player_1 = Human_player.new(name)
+        computer_player = Cpu.new
+        current_game = Mastermind.new
+
+        puts"\n#{name}, input your secret code"
+        secret_code = gets.chomp
+        secret_code = secret_code.chars.map {|number| number.to_i}
+        turn = 12
+
+        for i in (1..12)
+            puts "\nguesses left: #{turn}"
+            guess = computer_player.random_guess
+            puts "cpu guess is: #{guess}"
+            code_to_check = current_game.make_copy(secret_code)
+            guess_results = current_game.check_guess(guess,code_to_check)
+            current_game.print_game_evaluation(guess_results)
+            break if guess_results[0] == 4
+            turn -= 1
+            puts "the cpu is thinking..."
+            sleep (3)
+        end
+        if guess_results[0] == 4
+            puts "\nSorry, but this cpu has a lot of luck!"
+        else
+            puts "\nGood work there, #{name}. But this cpu is too dumb!"
+        end
     elsif intro_input == "3"
     # todo:vs cpu hard mode
     end
