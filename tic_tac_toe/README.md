@@ -6,7 +6,7 @@ The logic skeleton behind the game is placed in the main.rb file. To run the gam
 
 Instructions
 ---
-to make a move in the game the  player has to input a number between 1-9 to put a sign in the tic-tac-toe board. Each of the  cells in the game has an ubication that is the same of this one digit numbers in a number keyboard.
+To make a move in the game the  player has to input a number between 1-9 to put a sign in the tic-tac-toe board. Each of the  cells in the game has an ubication that is the same of this one digit numbers in a number keyboard.
 
         7|8|9
         —————
