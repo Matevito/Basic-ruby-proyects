@@ -1,9 +1,9 @@
 # computer.rb / cpu game methods
-require_relative "game_methods"
+require_relative 'game_methods'
 
 class Cpu < Mastermind
-    include GameMethods
-    def initialize
-        @name = "cpu"
-    end
+  include GameMethods
+  def initialize
+    @name = 'cpu'
+  end
 end
