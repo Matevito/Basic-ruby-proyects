@@ -13,4 +13,5 @@ OOP is hard but I have to admit that i feel that this proyect, even when has bee
 Things to do!
 ---
 1.Implement in the Cpu class methods that contain the logic of algorithims able to solve Mastermind games consistently.
+
 2.Clean the logic of the game in the main.rb file.
