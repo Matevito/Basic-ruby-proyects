@@ -65,11 +65,17 @@ end
 
 # Game logic
 current_game = Hangman.new
-
-# This is used to control the game loop
-current_turn = current_game.turn
-
-current_game.print_board
 p current_game.secret_word
-player_guess = take_guess
-current_game.check_guess(player_guess)
+# This is used to control the game loop
+while current_game.guesses > 0
+    # loop of the game
+    current_game.print_board
+    player_guess = take_guess
+    current_game.check_guess(player_guess)
+
+    #if the word is guessed the game stops!
+    if current_game.secret_word == current_game.word_output
+        p "you win!"
+        break
+    end
+end
