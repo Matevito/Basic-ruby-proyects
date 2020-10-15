@@ -4,13 +4,13 @@ Hangman is a game for two or more players. One player thinks of a word and the o
 
 What is this?
 ---
-As can be expected, this is a Hangman game using Ruby from the console using OOP. The game features a save and load game options. The save files are stored in the save_file.yaml. To run the game the main.rb file is the one that needs to be opened. THe other two files (GameObj.rb and logicMethods.rb) contain the code of the game class and the methos used in the main file to run the game.
+As can be expected, this is a Hangman game using Ruby from the console using OOP. The game features a save and load game options. The save files are stored in the save_file.yaml. To run the game the main.rb file is the one that needs to be opened. The other two files (GameObj.rb and logicMethods.rb) contain the code of the game class and the methos used in the main file to run the game.
 
-What I have learned?
+What have I learned?
 ---
-1.The idea behind OOP programming is becoming more clear with each proyect, that's nice. other codes that i have seen contain all the logic of the game behind the class, but this, in my opinion, makes too convoluted the code that makes it really hard to understand. I tried to limit the methods of the game class to just those that represent the behaviour of composing and analising  the game. I think this is the correct way, but I could be easily mistaken, I'm a rookie after all! On the other part, I think this is my best usage of OOP at the moment (15/10/20).
+1.The idea behind OOP programming is becoming more clear with each proyect, that's nice. other codes that I have seen contain all the logic of the game behind the class, but this, in my opinion, makes too convoluted the code that makes it really hard to understand. I tried to limit the methods of the game class to just those that represent the behaviour of composing and analising  the game. I think this is the correct way, but I could be easily mistaken, I'm a rookie after all! On the other part, I think this is my best usage of OOP at the moment (15/10/20).
 
-2.Beware of the freaking rubocop. I know that the recomendation in TOP where to be confident about the sugestions, but this broke my code so horribly and made it look so weird (the indentation was and is a mess) that almost lost my mind. the worst part is that i did the rubocop check, got the commit, did it again, that when i noticed the bugg was already too late. My last save was from an hour ago. So for these reason the final code contains some of the suggestion of rubocop that make the code look uglier than it really is...
+2.Beware of the freaking rubocop. I know that the recomendation in TOP where to be confident about the sugestions, but this broke my code so horribly and made it look so weird (the indentation was and is a mess) that almost lost my mind. the worst part is that I did the rubocop check, got the commit, did it again, that when i noticed the bugg was already too late. My last save was from an hour ago. So for these reason the final code contains some of the suggestion of rubocop that make the code look uglier than it really is...
 
 Things to do
 ---
