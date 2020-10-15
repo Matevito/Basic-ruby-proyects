@@ -17,22 +17,31 @@ end
 class Hangman
     # Game methods
     attr_reader :secret_word
+    attr_accessor :word_output, :turn, :guesses, :wrong_words
     def initialize(name)
         @name = name
-        @secret_word = Hangman.get_secret_word
         @guesses = 8
         @turn = 1
+        @secret_word = Hangman.get_secret_word
+        @word_output = "-"*secret_word.length
+        @wrong_words = []
     end
     def self.get_secret_word
         dictionary = load_dictionary
         get_random_word(dictionary)
     end
+    def print_board
+        puts"
+        turn:#{turn}
+        guesses left:#{guesses}
+        #{word_output}
+        Wrong words: #{wrong_words.join(", ")}"
+    end
     def check_guess
-
+        @turn += 1
     end
 end
 
 # Game logic
 current_game = Hangman.new("mateo")
-p current_game.secret_word
-
+current_game.print_board
