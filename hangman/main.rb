@@ -1,3 +1,4 @@
+require "yaml"
 # Game methods
 def load_dictionary
     dictionary = File.open("5desk.txt", "r") {|text| text.read}
@@ -14,8 +15,11 @@ def get_random_word(list)
     return secret_word
 end
 def take_guess
-    puts"\nPlayer, put your guess:"
+    puts"\nPlayer, put your guess or [save] to save the game:"
     guess = gets.chomp
+
+    #exception if gonna save the game
+    return "save" if guess == "save"
     
     # reject guesses longer than one character, symbols and numbers
     while guess.length > 1 || !guess.match?(/\w/) || guess.match?(/\A-?\d+\Z/)
@@ -23,6 +27,16 @@ def take_guess
         guess = gets.chomp
     end
     return guess
+end
+def save_game(object)
+    save_file = YAML::dump(object)
+    game_file = File.new("save_file.yaml", "w")
+    game_file.write(save_file)
+end
+def load_game
+    game_file = File.new("save_file.yaml", "r")
+    saved_file = game_file.read
+    YAML::load(saved_file)
 end
 
 class Hangman
@@ -65,15 +79,23 @@ end
 
 # Game logic
 current_game = Hangman.new
-p current_game.secret_word
+#p current_game.secret_word
+
 # This is used to control the game loop
 while current_game.guesses > 0
     # loop of the game
     current_game.print_board
     player_guess = take_guess
+
+    # save and stop the game if player_guess == "save"
+    if player_guess == "save"
+        save_game(current_game)
+        break
+    end
+
     current_game.check_guess(player_guess)
 
-    #if the word is guessed the game stops!
+    # if the word is guessed the game stops!
     if current_game.secret_word == current_game.word_output
         p "you win!"
         break
