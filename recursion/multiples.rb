@@ -11,4 +11,7 @@ def multiples(n)
     n + multiples(n-1)
 end
 
+# the code contains a bug cause if the first n is a multiple of 3 or 5 counts it it the adition. So
+# this means the code counts numbers from n multiples of 3 and 5, not below.
 p multiples(1000) # => 234168
+p multiples(10)  # => 33
