@@ -1,6 +1,6 @@
 --- !ruby/object:Hangman
-guesses: 3
-turn: 10
+guesses: 2
+turn: 11
 secret_word:
 - t
 - u
@@ -21,3 +21,4 @@ wrong_words:
 - o
 - i
 - s
+- n
