@@ -44,6 +44,46 @@ class LinkedList
         end
         return current_node
     end
+    def pop
+        current_node = @head
+        until current_node.next_node == @tail
+            current_node = current_node.next_node
+        end
+        current_node.next_node = nil
+        @tail = current_node
+    end
+
+    def contains?(value)
+        current_node = @head
+        loop do
+            if current_node.value == value
+                return true
+            elsif current_node.next_node == nil
+                return false
+            end
+            current_node = current_node.next_node
+        end
+    end
+
+    def find(value)
+        if self.contains?(value)
+            index = 0
+            current_node = @head
+            until current_node.value == value
+                current_node = current_node.next_node
+                index += 1
+            end
+            return index
+        else
+            return nil
+        end
+    end
+
+    def to_s
+        
+    end
+
+    #extra credit
 end
 
 list = LinkedList.new
@@ -57,3 +97,9 @@ p "tail: #{list.tail.value}"
 #p list.head.next_node
 #p "size: #{list.size}"
 p "content in 3: #{list.at(3).value}"
+
+p"the list contain? #{list.contains?("holaaaa, ahora soy la cabeza")}"
+p"the list contain? #{list.contains?("123")}"
+
+puts "\n 13 index is:"
+p list.find("holaaaa, ahora soy la cabeza")
