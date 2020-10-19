@@ -80,7 +80,15 @@ class LinkedList
     end
 
     def to_s
-        
+        string = ""
+        current_node = @head
+        until current_node.next_node == nil
+            string = string + "(#{current_node.value}) ==> "
+            current_node =  current_node.next_node
+        end
+        # append the tail in the list
+        string = string + "(#{current_node.value}) ==> nil"
+        return string
     end
 
     #extra credit
@@ -102,4 +110,6 @@ p"the list contain? #{list.contains?("holaaaa, ahora soy la cabeza")}"
 p"the list contain? #{list.contains?("123")}"
 
 puts "\n 13 index is:"
-p list.find("holaaaa, ahora soy la cabeza")
+p list.find(13)
+puts "\nlist to string: "
+p "#{list.to_s}"
