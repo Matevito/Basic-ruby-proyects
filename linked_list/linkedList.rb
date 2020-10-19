@@ -93,6 +93,15 @@ class LinkedList
         return string
     end
 
+    def get_tail
+        current_cell = @head
+        until current_cell.next_node == nil
+            current_cell = current_cell.next_node
+        end
+        @tail = current_cell
+        return current_cell
+    end
+
     #extra credit
     def insert_at(value, index)
         # create the node
@@ -112,7 +121,21 @@ class LinkedList
             @tail = value if after_node == nil
         end
     end
-    
+    def remove_at(index)
+        # exception if the head or tail is removed
+        if index == 0
+            new_head = @head.next_node
+            @head = new_head
+        elsif index == self.size - 1
+            self.pop
+            # not sure if get_tail method is really needed, and if it's not, why?
+            self.get_tail
+        else
+            before_node = self.at(index-1)
+            after_node = self.at(index+1)
+            before_node.next_node = after_node
+        end
+    end
 end
 
 list = LinkedList.new
@@ -137,5 +160,13 @@ p "#{list.to_s}"
 
 list.insert_at("new node", 1)
 
+
 puts "\nnew list: "
 p "#{list.to_s}"
+
+list.remove_at(2)
+
+puts "\nremove_at 2 test: "
+p "#{list.to_s}"
+
+p"new tail = #{list.tail.value}"
