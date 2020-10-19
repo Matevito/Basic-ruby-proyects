@@ -82,16 +82,37 @@ class LinkedList
     def to_s
         string = ""
         current_node = @head
+        return nil if current_node.nil?
+
         until current_node.next_node == nil
             string = string + "(#{current_node.value}) ==> "
             current_node =  current_node.next_node
         end
-        # append the tail in the list
+        # append the tail in the string!
         string = string + "(#{current_node.value}) ==> nil"
         return string
     end
 
     #extra credit
+    def insert_at(value, index)
+        # create the node
+        content_value = value
+        value = Node.new
+        value.value = content_value
+
+        # conect the node in the list
+        if index == 0
+            value.next_node = @head
+            @head = value
+        else
+            before_node = self.at(index-1)
+            after_node = self.at(index)
+            before_node.next_node = value
+            value.next_node = after_node
+            @tail = value if after_node == nil
+        end
+    end
+    
 end
 
 list = LinkedList.new
@@ -112,4 +133,9 @@ p"the list contain? #{list.contains?("123")}"
 puts "\n 13 index is:"
 p list.find(13)
 puts "\nlist to string: "
+p "#{list.to_s}"
+
+list.insert_at("new node", 1)
+
+puts "\nnew list: "
 p "#{list.to_s}"
