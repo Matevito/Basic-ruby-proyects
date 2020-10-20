@@ -54,8 +54,6 @@ class Tree
         current_node = @root
         before_node = @root
         until current_node.value == value || current_node.value == value
-            sleep(0.5)
-            p current_node.value
             before_node = current_node
             if current_node.value < value
                 current_node = current_node.right_child
@@ -64,8 +62,6 @@ class Tree
             end
         end
         # remove a leaf
-        p "eliminate this:"
-        p current_node.value
         if current_node.right_child == nil && current_node.left_child == nil
             if before_node.right_child == current_node
                 before_node.right_child = nil
@@ -74,21 +70,33 @@ class Tree
             end
         # remove with one children 
         elsif current_node.right_child == nil || current_node.left_child == nil
+            # map the new conection
             if current_node.right_child == nil
                 new_connection = current_node.left_child
             else
                 new_connection = current_node.right_child
             end
+            #connect the before node with the new connection
             if before_node.right_child == current_node
                 before_node.right_child = new_connection
             else before_node.left_child == current_node
                 before_node.left_child = new_connection
             end
-        # remove with two children
+        # remove with two children :/ build a new tree
+        elsif current_node.right_child != nil && current_node.left_child != nil
+            "this is hard!"
         end
     end
     def find(value)
-
+        current_node = @root
+        until current_node.value == value
+            if current_node.value > value
+                current_node = current_node.left_child
+            else
+                current_node = current_node.right_child
+            end
+        end
+        return current_node
     end
     def pretty_print(node = @root, prefix = '', is_left = true)
         pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_child
@@ -105,6 +113,6 @@ sorted_list.pretty_print
 
 
 sorted_list.pretty_print
-p sorted_list.delete(7)
+p sorted_list.delete(4)
 puts "\deleted node"
 sorted_list.pretty_print
