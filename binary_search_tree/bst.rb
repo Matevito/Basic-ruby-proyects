@@ -22,6 +22,32 @@ module Comparable
     end
 end
 
+def build_tree_(list)
+    root = list[list.length/2]
+    root_content = root
+    root = Node.new(root_content)
+    # 1. base case
+    if list.length == 1 
+        return root
+    end
+
+    # 2. recursive case
+    left_side = list[0..(list.length/2)-1]
+    right_side = list[(list.length/2)+1..list.length-1]
+    unless left_side.length == 0
+        left_link = build_tree_(left_side)
+    end
+    unless right_side.length == 0
+        right_link = build_tree_(right_side)
+    end
+
+    # root conections
+    root.left_child = left_link
+    root.right_child = right_link
+
+    return root
+end
+
 class Node
     include Comparable
     @right_child = nil
@@ -32,39 +58,9 @@ class Node
     end
 end
 
-def build_tree(list)
-    root = list[list.length/2]
-
-    # base case
-    if list.length == 1 
-        return root
-    end
-
-    #recursive case
-    left_side = list[0..(list.length/2) -1]
-    right_side = list[(list.length/2)+1..list.length-1]
-    p "#{left_side} left "
-    sleep(0.5)
-    p "#{right_side} right "
-    sleep(0.5)
-
-    left_link = build_tree(left_side)
-    right_link = build_tree(right_side)
-
-    # build the node
-    root_content = root
-    root = Node.new(root_content)
-    # root conections
-    root.left_child(left_link)
-    root.right_child(right_link)
-
-    return root
-end
-
-p build_tree([1,2,3,4,5,6,7])
 class Tree
     @root = nil
-    attr_accessor :root
+    attr_accessor :root, :list
     def initialize(list)
         @list = list
     end
@@ -80,11 +76,11 @@ class Tree
         @list = new_list.sort
 
         # 3. make the tree
-
+        @root = build_tree_(@list)
     end
 end
 
 number_array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 
-#sorted_list = Tree.new(number_array)
-#p sorted_list.build_tree
+sorted_list = Tree.new(number_array)
+sorted_list.build_tree
