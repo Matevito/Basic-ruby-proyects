@@ -52,6 +52,7 @@ class Node
     include Comparable
     @right_child = nil
     @left_child = nil
+    @value = nil
     attr_accessor :right_child, :left_child, :value
     def initialize(value)
         @value = value
@@ -78,9 +79,15 @@ class Tree
         # 3. make the tree
         @root = build_tree_(@list)
     end
+    def pretty_print(node = @root, prefix = '', is_left = true)
+        pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_child
+        puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
+        pretty_print(node.left_child, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left_child
+    end
 end
 
 number_array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 
 sorted_list = Tree.new(number_array)
 sorted_list.build_tree
+sorted_list.pretty_print
