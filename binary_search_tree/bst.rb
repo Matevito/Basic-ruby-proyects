@@ -134,6 +134,24 @@ class Tree
         ordered.concat(inorder(node.right_child))
         return ordered
     end
+    def height(node)
+        count = -1
+        queue = [node]
+        until queue == []
+            new_queue = []
+            queue.each do |node|
+                if node.left_child != nil
+                    new_queue.push(node.left_child)
+                end
+                if node.right_child != nil
+                    new_queue.push(node.right_child)
+                end
+            end
+            queue = new_queue
+            count += 1
+        end
+        return count
+    end
     def pretty_print(node = @root, prefix = '', is_left = true)
         pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_child
         puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
@@ -149,3 +167,5 @@ sorted_list.pretty_print
 
 sorted_list.delete(4)
 sorted_list.pretty_print
+
+p sorted_list.height(sorted_list.find(67))
