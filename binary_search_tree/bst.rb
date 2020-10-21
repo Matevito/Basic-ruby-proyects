@@ -166,6 +166,31 @@ class Tree
         end
         return count
     end
+    def balanced?
+        check_list = inorder(@root)
+        balanced = true
+        check_list.each do |node_value|
+            current_node = find(node_value)
+            # get left and right values
+            if current_node.left_child == nil
+                left_height = -1
+            else
+                left_height = height(current_node.left_child)
+            end
+            if current_node.right_child == nil
+                right_height = -1
+            else
+                right_height = height(current_node.right_child)
+            end
+            # evaluate this values
+            result = left_height - right_height
+            if result < -1 || result > 1
+                balanced = false
+                break
+            end
+        end
+        return balanced
+    end
     def pretty_print(node = @root, prefix = '', is_left = true)
         pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_child
         puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
@@ -179,7 +204,9 @@ sorted_list = Tree.new(number_array)
 sorted_list.build_tree
 sorted_list.pretty_print
 
-sorted_list.delete(4)
+p sorted_list.height(sorted_list.find(8))
+
+
 sorted_list.pretty_print
 
-p sorted_list.depth(sorted_list.find(9))
+p sorted_list.balanced?
