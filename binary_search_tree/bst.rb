@@ -6,19 +6,19 @@ class Tree
     def initialize(list)
         @list = list
     end
-    def build_tree
+    def build_tree(list = @list)
         # 1. remove duplicates
         new_list = []
-        @list.each do |element|
+        list.each do |element|
             unless new_list.include?(element)
                 new_list.push(element)
             end
         end
         # 2. sort the elements
-        @list = new_list.sort
+        list = new_list.sort
 
         # 3. make the tree
-        @root = build_tree_(@list)
+        @root = build_tree_(list)
     end
     def insert(value)
         value_content = value
@@ -169,6 +169,7 @@ class Tree
     def balanced?
         check_list = inorder(@root)
         balanced = true
+        # the loop will check all nodes height in it's left and right
         check_list.each do |node_value|
             current_node = find(node_value)
             # get left and right values
@@ -191,6 +192,10 @@ class Tree
         end
         return balanced
     end
+    def rebalance
+        tree_list = level_order.sort
+        build_tree(tree_list)
+    end
     def pretty_print(node = @root, prefix = '', is_left = true)
         pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_child
         puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
@@ -206,7 +211,13 @@ sorted_list.pretty_print
 
 p sorted_list.height(sorted_list.find(8))
 
-
+sorted_list.insert(15)
+sorted_list.insert(18)
 sorted_list.pretty_print
 
+p sorted_list.balanced?
+
+sorted_list.rebalance
+
+sorted_list.pretty_print
 p sorted_list.balanced?
