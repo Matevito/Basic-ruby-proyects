@@ -20,6 +20,7 @@ module Comparable
             return false
         end
     end
+
 end
 
 class Node
@@ -57,4 +58,24 @@ def build_tree_(list)
     root.right_child = right_link
 
     return root
+end
+
+def level_order_array(node_root)
+    # this is going to be reused in the delete method case 3
+    level_order_list = []
+    queue = [node_root]
+        until queue == []
+            queue.each {|node| level_order_list.push(node.value)}
+            new_queue = []
+            queue.each do |node|
+                if node.left_child != nil
+                    new_queue.push(node.left_child)
+                end
+                if node.right_child != nil
+                    new_queue.push(node.right_child)
+                end
+            end
+            queue = new_queue
+        end
+    return level_order_list
 end

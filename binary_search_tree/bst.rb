@@ -100,22 +100,32 @@ class Tree
     end
     def level_order
         current_node = @root
-        level_order_list = []
-        queue = [current_node]
-        until queue == []
-            queue.each {|node| level_order_list.push(node.value)}
-            new_queue = []
-            queue.each do |node|
-                if node.left_child != nil
-                    new_queue.push(node.left_child)
-                end
-                if node.right_child != nil
-                    new_queue.push(node.right_child)
-                end
-            end
-            queue = new_queue
-        end
+        level_order_list = level_order_array(current_node)
         return level_order_list
+    end
+    def preorder(node = @root)
+        ordered = []
+        return [] if node.nil?
+        ordered.push(node.value)
+        ordered.concat(preorder(node.left_child))
+        ordered.concat(preorder(node.right_child))
+        return ordered
+    end
+    def postorder(node = @root)
+        ordered = []
+        return [] if node.nil?
+        ordered.concat(preorder(node.left_child))
+        ordered.concat(preorder(node.right_child))
+        ordered.push(node.value)
+        return ordered
+    end
+    def inorder(node = @root)
+        ordered = []
+        return [] if node.nil?
+        ordered.concat(inorder(node.left_child))
+        ordered.push(node.value)
+        ordered.concat(inorder(node.right_child))
+        return ordered
     end
     def pretty_print(node = @root, prefix = '', is_left = true)
         pretty_print(node.right_child, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right_child
@@ -129,4 +139,5 @@ number_array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 sorted_list = Tree.new(number_array)
 sorted_list.build_tree
 sorted_list.pretty_print
-p sorted_list.level_order
+
+p sorted_list.inorder
