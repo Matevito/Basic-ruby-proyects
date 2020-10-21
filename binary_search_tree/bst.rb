@@ -135,6 +135,7 @@ class Tree
         return ordered
     end
     def height(node)
+        # count start with -1 because the code always adds at least 1.
         count = -1
         queue = [node]
         until queue == []
@@ -148,6 +149,19 @@ class Tree
                 end
             end
             queue = new_queue
+            count += 1
+        end
+        return count
+    end
+    def depth(node)
+        current_node = @root
+        count = 0
+        until current_node == node
+            if current_node.value > node.value
+                current_node = current_node.left_child
+            else
+                current_node = current_node.right_child
+            end
             count += 1
         end
         return count
@@ -168,4 +182,4 @@ sorted_list.pretty_print
 sorted_list.delete(4)
 sorted_list.pretty_print
 
-p sorted_list.height(sorted_list.find(67))
+p sorted_list.depth(sorted_list.find(9))
