@@ -203,21 +203,44 @@ class Tree
     end
 end
 
-number_array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
+# script test
+tree_list = Array.new(15) { rand(1..100) }
+binary_tree = Tree.new(tree_list)
+binary_tree.build_tree
+binary_tree.pretty_print
+sleep(1.5)
+puts "\nThe tree is balanced? #{binary_tree.balanced?}"
 
-sorted_list = Tree.new(number_array)
-sorted_list.build_tree
-sorted_list.pretty_print
+# elements in level, pre, post and in order
+sleep(1.5)
+puts "\ntree elements in level order: #{binary_tree.level_order}"
+sleep(1.5)
+puts "\ntree elements in preorder: #{binary_tree.preorder}"
+sleep(1.5)
+puts "\ntree elements in postorder: #{binary_tree.postorder}"
+sleep(1.5)
+puts "\ntree elements in inorder: #{binary_tree.inorder}"
 
-p sorted_list.height(sorted_list.find(8))
+# unbalance the tree
+puts "\nUNBALANCING THE TREE: "
+tries = rand(5..10)
+tries.times do
+    binary_tree.insert(rand(100..1000))
+end
+sleep(1.5)
+binary_tree.pretty_print
+puts "\nThe tree is balanced? #{binary_tree.balanced?}"
 
-sorted_list.insert(15)
-sorted_list.insert(18)
-sorted_list.pretty_print
-
-p sorted_list.balanced?
-
-sorted_list.rebalance
-
-sorted_list.pretty_print
-p sorted_list.balanced?
+puts "\nBALANCING TREE..."
+binary_tree.rebalance
+sleep(1.5)
+binary_tree.pretty_print
+puts "\nThe tree is balanced? #{binary_tree.balanced?}"
+sleep(1.5)
+puts "\ntree elements in level order: #{binary_tree.level_order}"
+sleep(1.5)
+puts "\ntree elements in preorder: #{binary_tree.preorder}"
+sleep(1.5)
+puts "\ntree elements in postorder: #{binary_tree.postorder}"
+sleep(1.5)
+puts "\ntree elements in inorder: #{binary_tree.inorder}"
