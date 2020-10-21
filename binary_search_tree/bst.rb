@@ -84,7 +84,14 @@ class Tree
             end
         # remove with two children :/ build a new tree
         elsif current_node.right_child != nil && current_node.left_child != nil
-            "this is hard!"
+            sub_tree =  level_order_array(current_node)
+            sub_tree.delete(current_node.value)
+            new_tree = build_tree_(sub_tree.sort)
+            if before_node.right_child == current_node
+                before_node.right_child = new_tree
+            else
+                before_node.left_child = new_tree
+            end
         end
     end
     def find(value)
@@ -140,4 +147,5 @@ sorted_list = Tree.new(number_array)
 sorted_list.build_tree
 sorted_list.pretty_print
 
-p sorted_list.inorder
+sorted_list.delete(4)
+sorted_list.pretty_print
