@@ -48,5 +48,5 @@ def merge_sort(numbers)
     merge(left_side, right_side)
 end
 
-# merge_sort [3,4,78,99,1,11,15,2,6,44]
+#p merge_sort [3,4,78,99,1,11,15,2,6,44]
 p merge_sort([3,4,78,99,11,15,2,6,44,8,1]) #=> [1, 2, 3, 4, 6, 8, 11, 15, 44, 78, 99]
