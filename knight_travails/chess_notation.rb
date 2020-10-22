@@ -43,7 +43,6 @@ def int_to_chess(number_list)
     # if its just one element return an array inside an array
     chess_notation = []
     number_list.each do |square|
-        p " i happened"
         square_notation = []
         letter = num_to_letter(square[0])
         square_notation.push(letter, square[1])
@@ -57,5 +56,3 @@ def chess_to_int(square)
     square = square.split("")
     return[letter_to_number(square[0]), square[1]]
 end
-
-p chess_to_int("h5")
