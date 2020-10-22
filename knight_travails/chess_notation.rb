@@ -39,13 +39,15 @@ def letter_to_number(letter)
         7
     end
 end
+# todo: check why the last number does not transform to int with "to_i".
 def int_to_chess(number_list)
     # if its just one element return an array inside an array
     chess_notation = []
     number_list.each do |square|
         square_notation = []
         letter = num_to_letter(square[0])
-        square_notation.push(letter, square[1])
+        number = square[1]
+        square_notation.push(letter, number)
         chess_notation.push(square_notation)
     end
     # todo: flatten if theres only one element inside!

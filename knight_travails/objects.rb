@@ -21,12 +21,12 @@ class Knight < Board
         list_moves = []
         # generate moves
         list_moves << [current_position[0]+1, current_position[1]+2]
-        list_moves << [current_position[0]+2, current_position[1]+1]
-        list_moves << [current_position[0]-1, current_position[1]+2]
-        list_moves << [current_position[0]-2, current_position[1]+1]
-        list_moves << [current_position[0]+2, current_position[1]-1]
         list_moves << [current_position[0]+1, current_position[1]-2]
+        list_moves << [current_position[0]+2, current_position[1]+1]
+        list_moves << [current_position[0]+2, current_position[1]-1]
+        list_moves << [current_position[0]-1, current_position[1]+2]
         list_moves << [current_position[0]-1, current_position[1]-2]
+        list_moves << [current_position[0]-2, current_position[1]+1]
         list_moves << [current_position[0]-2, current_position[1]-1]
 
         # remove invalid moves
@@ -36,11 +36,18 @@ class Knight < Board
     end
     def knight_moves(current_position, destination)
         paths = [current_position]
+        count = 1
         loop do
         queue = paths
         valid_paths = []
         queue.each do |path|
-            new_paths = posible_moves(path[-1])
+            # this solve first iteration bugg
+            if count == 1
+                new_paths = posible_moves(path)
+            else
+                new_paths = posible_moves(path[-1])
+            end
+            count += 1
             not_repeated = []
             new_paths.each do |node|
                 unless path.include?(node)
@@ -48,7 +55,7 @@ class Knight < Board
                 end
             end
             not_repeated.each do |n|
-                valid_paths << [path] + [n]
+                valid_paths << [path]+ [n]
             end
             valid_paths.each do |n|
                 if n[-1] == destination
@@ -60,7 +67,3 @@ class Knight < Board
     end
     end
 end
-knight = Knight.new
-p knight.knight_moves([0,0],[7,6])
-
-#todo: check indentation of each path
