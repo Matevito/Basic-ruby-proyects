@@ -49,12 +49,13 @@ describe Board do
         end
     end
     describe "#check game status" do
-        xit "win in row" do
-            board_test.board = [[["x"]],[["x"]],[["x"]],["O"],[["O"]],[["O"]],[["O"]]]
+        board_test = Board.new
+        it "win in column" do
+            board_test.board = [[["o"],["o"],["x"],["x"],["x"],["x"]],[],[],[],[],[],[]]
             expect(board_test.check_status).to eql(true)
         end
-        xit "win in column" do
-            board_test.board = [[["o"],["o"],["x"],["x"],["x"],["x"]],[],[],[],[],[],[]]
+        it "win in row" do
+            board_test.board = [[["x"]],[["x"]],[["x"]],["o"],[["o"]],[["o"]],[["o"]]]
             expect(board_test.check_status).to eql(true)
         end
         xit "win in diagonal (l-r)" do
@@ -97,6 +98,6 @@ describe Board do
         end
     end
     describe "#print board" do
-        
+        xit "does not modify the board_class variable"
     end
 end
