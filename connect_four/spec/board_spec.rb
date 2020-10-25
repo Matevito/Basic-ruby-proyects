@@ -21,7 +21,7 @@ describe Board do
         end
         it "fill with [''] the free spaces in the board variable" do
             board_test.board = [[["x"],["x"]],[],[],[],[],[],[]]
-            expect(board_test.board_to_evaluate).to eql([[["x"],["x"],[""],[""],[""],[""],[""],],
+            expect(board_test.board_to_evaluate).to eql([[["x"],["x"],[""],[""],[""],[""],[""]],
                                                         [[""],[""],[""],[""],[""],[""],[""]],
                                                         [[""],[""],[""],[""],[""],[""],[""]],
                                                         [[""],[""],[""],[""],[""],[""],[""]],
@@ -29,9 +29,9 @@ describe Board do
                                                         [[""],[""],[""],[""],[""],[""],[""]],
                                                         [[""],[""],[""],[""],[""],[""],[""]]])
         end
-        xit "the function handles filled columns" do
-            [[["o"],["o"],["x"],["x"],["x"],["x"]],[],[],[],[],[],[]]
-            expect(board_test.board_to_evaluate).to eql([[["o"],["o"],["x"],["x"],["x"],["x"]],
+        it "the function handles filled columns" do
+            board_test.board = [[["o"],["o"],["x"],["x"],["x"],["x"],["o"]],[],[],[],[],[],[]]
+            expect(board_test.board_to_evaluate).to eql([[["o"],["o"],["x"],["x"],["x"],["x"],["o"]],
                                                         [[""],[""],[""],[""],[""],[""],[""]],
                                                         [[""],[""],[""],[""],[""],[""],[""]],
                                                         [[""],[""],[""],[""],[""],[""],[""]],
@@ -39,13 +39,13 @@ describe Board do
                                                         [[""],[""],[""],[""],[""],[""],[""]],
                                                         [[""],[""],[""],[""],[""],[""],[""]]])
         end
-        it "does not output error if board is filled(is a draw)"do
-            
-        end
-        it "the function does not affect the board variable" do
+        it "the function does not affect the board-object variable" do
             board_test.board = [[],[],[],[],[],[],[]]
             board_test.board_to_evaluate
             expect(board_test.board).to eql([[],[],[],[],[],[],[]])
+        end
+        xit "does not output error if board is filled(is a draw)"do
+            
         end
     end
     describe "#check game status" do

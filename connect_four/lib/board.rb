@@ -3,8 +3,14 @@ class Board
     def initialize
         @board = Array.new(7,[])
     end
+    def board
+        @board.dup
+    end
     def board_to_evaluate
-        new_board = @board
+        # clone board variable
+        new_board = @board.dup.map(&:dup)
+
+        # fill with blank spaces the board
         new_board.each do |column|
             until column.size == 7
                 column << [""]
@@ -14,5 +20,8 @@ class Board
     end
     def check_status
     
+    end
+    def print_board
+
     end
 end
