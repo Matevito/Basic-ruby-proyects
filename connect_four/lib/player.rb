@@ -4,4 +4,3 @@ class Player
         @name = name
     end
 end
-print "U+265x"
