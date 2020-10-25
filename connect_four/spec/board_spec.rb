@@ -68,7 +68,7 @@ describe Board do
                                 []]
             expect(board_test.check_status).to eql(true)                  
         end
-        xit "win in diagonal(r-l)" do
+        it "win in diagonal(r-l)" do
             board_test.board = [[["x"]],
                                 [["x"],["o"],["o"],["x"]],
                                 [["o"],["o"],["x"]],
