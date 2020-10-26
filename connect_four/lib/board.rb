@@ -1,7 +1,7 @@
 require_relative "game_methods"
 class Board
     include GameMethods
-    attr_accessor :board, :@game_turn
+    attr_accessor :board, :game_turn
     def initialize
         @board = Array.new(7,[])
         @game_turn = 0
@@ -35,7 +35,11 @@ class Board
         end
     end
     def make_move(symbol)
-
+        puts "make a move(1-7):"
+        column = gets.chomp.to_i
+        column -= 1
+        @game_turn += 1
+        @board[column] = @board[column] << [symbol]
     end
     def print_board
         board_ = self.board_to_evaluate
