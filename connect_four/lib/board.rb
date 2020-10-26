@@ -1,7 +1,7 @@
 require_relative "game_methods"
 class Board
     include GameMethods
-    attr_accessor :board
+    attr_accessor :board, :@game_turn
     def initialize
         @board = Array.new(7,[])
         @game_turn = 0
@@ -16,7 +16,7 @@ class Board
         # fill with blank spaces the board
         new_board.each do |column|
             until column.size == 7
-                column << [""]
+                column << [" "]
             end
         end
         return new_board
@@ -34,8 +34,17 @@ class Board
             return false
         end
     end
-    def print_board
-        board_to_print = self.board_to_evaluate
+    def make_move(symbol)
 
+    end
+    def print_board
+        board_ = self.board_to_evaluate
+        puts "\nCurrent turn:#{@game_turn}"
+        puts "——"*7
+        for i in (0..6) do
+            puts "|#{board_[0][6-i]}|#{board_[1][6-i]}|#{board_[2][6-i]}|#{board_[3][6-i]}|#{board_[4][6-i]}|#{board_[5][6-i]}|#{board_[6][6-i]}|"
+            puts "——"*7
+        end
+        puts "|1|2|3|4|5|6|7|"
     end
 end
