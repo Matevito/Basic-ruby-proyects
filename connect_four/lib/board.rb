@@ -38,6 +38,11 @@ class Board
         puts "make a move(1-7):"
         column = gets.chomp.to_i
         column -= 1
+        until @board[column].size < 7
+            puts "make a valid move(1-7):"
+            column = gets.chomp.to_i
+            column -= 1
+        end
         @game_turn += 1
         @board[column] = @board[column] << [symbol]
     end
