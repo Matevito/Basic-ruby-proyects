@@ -16,7 +16,7 @@ class Board
         # fill with blank spaces the board
         new_board.each do |column|
             until column.size == 7
-                column << [" "]
+                column << " "
             end
         end
         return new_board
@@ -44,11 +44,11 @@ class Board
             column -= 1
         end
         @game_turn += 1
-        @board[column] = @board[column] << [symbol]
+        @board[column] = @board[column] + [symbol]
     end
     def print_board
         board_ = self.board_to_evaluate
-        puts "\nCurrent turn:#{@game_turn}"
+        puts "\nCurrent turn:#{@game_turn+1}"
         puts "——"*7
         for i in (0..6) do
             puts "|#{board_[0][6-i]}|#{board_[1][6-i]}|#{board_[2][6-i]}|#{board_[3][6-i]}|#{board_[4][6-i]}|#{board_[5][6-i]}|#{board_[6][6-i]}|"
